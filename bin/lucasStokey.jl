@@ -370,7 +370,6 @@ plotSimulatedEconomy(G, -0.09999, Pi, 100)
 # ======================
 # 3.d Defining Functions
 # ======================
-
 """
 Approximate AR1 with finite markov process
 Proudly stolen on quantEcon github repository
@@ -389,54 +388,39 @@ where epsilon_t sim N (0, sigma^2)
 
     Args:
         - N::Integer: Number of points in markov process
-        - ρ::Real : Persistence parameter in AR(1) process
-        - σ::Real : Standard deviation of random component of AR(1) process
-        - μ::Real(0.0) : Mean of AR(1) process
+        - rho::Real : Persistence parameter in AR(1) process
+        - sigma::Real : Standard deviation of random component of AR(1) process
+        - mu::Real(0.0) : Mean of AR(1) process
         - n_std::Integer(3) : The number of standard deviations to each side the process
           should span
 """
-function tauchen(N::Integer, ρ::Real, σ::Real, μ::Real=0.0, n_std::Integer=3)
+function tauchen(N::Integer, rho::Real, sigma::Real, mu::Real=0.0, n_std::Integer=3)
     # Get discretized space
-    a_bar = n_std * sqrt(σ^2 / (1 - ρ^2))
+    a_bar = n_std * sqrt(sigma^2 / (1 - sigma^2))
     y = range(-a_bar, stop=a_bar, length=N)
     d = y[2] - y[1]
 
     # Get transition probabilities
-    Π = zeros(N, N)
+    Pi = zeros(N, N)
     for row = 1:N
         # Do end points first
-        Π[row, 1] = std_norm_cdf((y[1] - ρ*y[row] + d/2) / σ)
-        Π[row, N] = 1 - std_norm_cdf((y[N] - ρ*y[row] - d/2) / σ)
+        Pi[row, 1] = std_norm_cdf((y[1] - rho*y[row] + d/2) / sigma)
+        Pi[row, N] = 1 - std_norm_cdf((y[N] - rho*y[row] - d/2) / sigma)
 
         # fill in the middle columns
         for col = 2:N-1
-            Π[row, col] = (std_norm_cdf((y[col] - ρ*y[row] + d/2) / σ) -
-                           std_norm_cdf((y[col] - ρ*y[row] - d/2) / σ))
+            Pi[row, col] = (std_norm_cdf((y[col] - rho*y[row] + d/2) / sigma) -
+                           std_norm_cdf((y[col] - rho*y[row] - d/2) / sigma))
         end
     end
 
-    # NOTE: I need to shift this vector after finding probabilities
-    #       because when finding the probabilities I use a function
-    #       std_norm_cdf that assumes its input argument is distributed
-    #       N(0, 1). After adding the mean E[y] is no longer 0, so
-    #       I would be passing elements with the wrong distribution.
-    #
-    #       It is ok to do after the fact because adding this constant to each
-    #       term effectively shifts the entire distribution. Because the
-    #       normal distribution is symmetric and we just care about relative
-    #       distances between points, the probabilities will be the same.
-    #
-    #       I could have shifted it before, but then I would need to evaluate
-    #       the cdf with a function that allows the distribution of input
-    #       arguments to be [μ/(1 - ρ), 1] instead of [0, 1]
-
-    yy = y .+ μ / (1 - ρ) # center process around its mean (wbar / (1 - rho)) in new variable
+    yy = y .+ mu / (1 - rho) # center process around its mean (wbar / (1 - rho)) in new variable
 
     # renormalize. In some test cases the rows sum to something that is 2e-15
     # away from 1.0, which caused problems in the MarkovChain constructor
-    Π = Π./sum(Π, dims = 2)
+    Pi = Pi./sum(Pi, dims = 2)
 
-    return Π, yy
+    return Pi, yy
 end
 
 # =======================

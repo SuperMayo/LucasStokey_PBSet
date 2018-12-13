@@ -1,13 +1,13 @@
 SOURCE = src/lucasStokey.ipynb
-WEBDIR = www/
+WEBDIR = docs/
 SCRIPTDIR = bin/
 PDFDIR = pdf/
-OUTPUTS= www/LucasStokey.html bin/LucasStokey.jl pdf/LucasStokey.pdf
+OUTPUTS= docs/index.html bin/LucasStokey.jl pdf/LucasStokey.pdf
 .PHONY: clean
 
 all: $(OUTPUTS)
 
-www/LucasStokey.html: $(SOURCE)
+docs/index.html: $(SOURCE)
 	jupyter nbconvert --to HTML $^ --output-dir $(WEBDIR)
 
 bin/LucasStokey.jl: $(SOURCE)
