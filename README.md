@@ -23,7 +23,7 @@ To run the minimal code under the `bin` folder, make sure you have dependencies 
 using Pkg; Pkg.add(["Dierckx", "Distributions", "LaTeXStrings", "NLsolve", "PGFPlots", "Plots", "SpecialFunctions"])
 ```
 
-You can use another plot backend by changing the first line ```julia using Plots; pgfplots()```. For the default backend, write ```julia using Plots; gr()```.
+You can use another plot backend by changing the first line ```using Plots; pgfplots()```. For the default backend, write ```using Plots; gr()```.
 
 ## Reproducing results
 You can download and run the julia notebook in the `src` folder. To build web pages and LaTeX report, run the makefile in the root directory (only on MacOS and GNU/Linux)
