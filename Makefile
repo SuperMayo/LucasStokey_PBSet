@@ -1,4 +1,4 @@
-SOURCE = src/lucasStokey.ipynb
+SOURCE = src/LucasStokey.ipynb
 WEBDIR = docs/
 SCRIPTDIR = bin/
 PDFDIR = pdf/
@@ -9,13 +9,17 @@ all: $(OUTPUTS)
 
 docs/index.html: $(SOURCE)
 	jupyter nbconvert --to HTML $^
-	mv docs/lucasStokey.html docs/index.html 
+	mv src/LucasStokey.html docs/index.html 
 
 bin/LucasStokey.jl: $(SOURCE)
 	jupyter nbconvert --to script $^ --output-dir $(SCRIPTDIR)
 
+
 pdf/LucasStokey.pdf: $(SOURCE)
-	jupyter nbconvert --to pdf --template template $^ --output-dir $(PDFDIR)
+	jupyter nbconvert --to Markdown $^ --template=src/hidecode.tpl --output-dir $(PDFDIR)
+	$(MAKE) -C $(PDFDIR)
+
 
 clean:
 	rm -rf $(OUTPUTS)
+	rm -rf $(PDFDIR)Lucas*
