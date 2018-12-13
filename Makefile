@@ -8,7 +8,8 @@ OUTPUTS= docs/index.html bin/LucasStokey.jl pdf/LucasStokey.pdf
 all: $(OUTPUTS)
 
 docs/index.html: $(SOURCE)
-	jupyter nbconvert --to HTML $^ --output-dir $(WEBDIR)
+	jupyter nbconvert --to HTML $^
+	mv docs/lucasStokey.html docs/index.html 
 
 bin/LucasStokey.jl: $(SOURCE)
 	jupyter nbconvert --to script $^ --output-dir $(SCRIPTDIR)
