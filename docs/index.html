@@ -13116,7 +13116,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="PROBLEM-SET---Lucas-Stokey-(1983)">PROBLEM SET - Lucas Stokey (1983)<a class="anchor-link" href="#PROBLEM-SET---Lucas-Stokey-(1983)">&#182;</a></h1><h2 id="Antoine-Mayerowitz">Antoine Mayerowitz<a class="anchor-link" href="#Antoine-Mayerowitz">&#182;</a></h2>
+<h1 id="PROBLEM-SET---Lucas-Stokey-(1983)">PROBLEM SET - Lucas Stokey (1983)<a class="anchor-link" href="#PROBLEM-SET---Lucas-Stokey-(1983)">&#182;</a></h1><h3 id="PhD-course-in-Fiscal-Policy---Axelle-Ferriere">PhD course in Fiscal Policy - Axelle Ferriere<a class="anchor-link" href="#PhD-course-in-Fiscal-Policy---Axelle-Ferriere">&#182;</a></h3><h2 id="Antoine-Mayerowitz-&#8212;-PSE--Fall-2018">Antoine Mayerowitz &#8212; PSE  Fall 2018<a class="anchor-link" href="#Antoine-Mayerowitz-&#8212;-PSE--Fall-2018">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -19258,6 +19258,69 @@ $$</p>
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Part-two---Theoretical-exercise">Part two - Theoretical exercise<a class="anchor-link" href="#Part-two---Theoretical-exercise">&#182;</a></h1><p>In the model with complete market and capital, prove that if the government can use lump-sum taxes: (1) the optimal Ramsey plan reaches the first best; (2) the Lagrange multiplier of the iplementability constraint $\Phi$ is equal to zero.</p>
+<h2 id="Solution">Solution<a class="anchor-link" href="#Solution">&#182;</a></h2><h3 id="First-best">First best<a class="anchor-link" href="#First-best">&#182;</a></h3><p>The planner objective is</p>
+\begin{align}
+&amp; \underset{\{c_t(g^t), n_t(g^t)\}_{t=0}^\infty}{\text{max}} \sum^{\infty}_{t=0} \beta{t} \sum_{g^{t}} \pi_{t} (g^{t}|g_0) u\big(c_{t}(g^{t}),1-n_{t}(g^{t})\big) \\
+\text{s.t.}\;\;\; &amp; c_{t}(g^{t}) + g_{t}(g^{t}) + k_{t+1}(g^{t}) = A_{t}(g^{t}) F\big(k_{t}(g^{t-1}),n_{t}(g^{t})\big) + (1- \delta)k_{t}(g^{t})
+\end{align}<p>The Lagrangian of this problem is given as
+\begin{align}
+\mathcal{L} = &amp; \sum^{\infty}_{t=0} \beta{t} \sum_{g^{t}} \pi_{t} (g^{t}|g_0) \big\{ u\big(c_{t}(g^{t}),1-n_{t}(g^{t})\big) \\
+&amp; - \lambda_t(g^t)[A_{t}(g^{t}) F(k_{t}(g^{t-1}),n_{t}(g^{t})) \\
+&amp;+ (1- \delta)k_{t}(g^{t}) - c_{t}(g^{t}) - g_{t}(g^{t}) - k_{t+1}(g^{t})] \big\}
+\end{align}</p>
+<h3 id="Competitive-equilibrium-with-lump-sum-tax">Competitive equilibrium with lump sum tax<a class="anchor-link" href="#Competitive-equilibrium-with-lump-sum-tax">&#182;</a></h3><h4 id="Government">Government<a class="anchor-link" href="#Government">&#182;</a></h4><p>The government budget constraint has to hold:
+$$
+g_{t} + b_{t} = T_{t} + \tau_{t}^{k}r_{t}k_{t} +\tau_{t}^{n}\omega_{t} n_{t} +  \sum_{g_{t+1}} p_{t+1} (g_{t+1}|g^{t}) b_{t+1}(g_{t+1}|g^{t}) 
+$$</p>
+<h4 id="Household">Household<a class="anchor-link" href="#Household">&#182;</a></h4><p>With capital, the household's budget constraint becomes:
+\begin{align}
+c_{t} + k_{t+1} + &amp; \sum_{g_{t+1}} p_{t+1} (g_{t+1}|g^{t})b_{t+1}(g_{t+1}|g^{t}) =  b_{t}(g^{t}) \\ &amp; + (1-\tau_{t}^{n})\omega_{t} n_{t} + (1 - \tau_{t}^{k})r_{t}k_{t} + (1- \delta)k_{t} - T_t
+\end{align}</p>
+<p>And the maximization problem problem leads to to the FOCs:
+\begin{align}
+    \frac{u_{x}(g^{t})}{u_{c}(g^{t})} &amp; = (1-\tau_{t}^{n}(g{t}))\omega_{t}(g^{t}) \\
+    p_{t+1} (g_{t+1}|g_{t}) &amp; = \beta \pi_{t+1} (g_{t+1}|g_{t}) \frac{u_{c}(g^{t+1})}{u_{c}(g^{t})} \\
+    u_{c}(g^{t}) &amp; = \beta E_{t} u_{c}(g^{t+1}) [1-\delta + r_{t+1}(g^{t+1})(1 - \tau^{k}_{t+1}(g^{t+1}))] \\
+\end{align}</p>
+<p>We also write the budget constraint in time zero formulation</p>
+\begin{equation}
+   \sum_{t=0}^{\infty} \sum_{g_{t}} q_{t}^{0} (g^{t}) [c_{t} + T_{t} -(1-\tau_{t}^{n}) \omega_{t} \eta_{t}] = b_{0} +[(1-\tau_{0}^{k})r_{0} + 1 - \delta]k_{0}
+\end{equation}<h4 id="Firms">Firms<a class="anchor-link" href="#Firms">&#182;</a></h4><p>Firms optimality conditions yeld:
+\begin{align}
+r_{t} &amp; =F{k,t} \\
+\omega_{t} &amp; = F_{n,t}    
+\end{align}</p>
+<h3 id="Ramsey-plan">Ramsey plan<a class="anchor-link" href="#Ramsey-plan">&#182;</a></h3><p>We rewrite the household budget constraint without prices using the FOCs to get the implementability constraint:
+\begin{equation}
+    \sum_{t=0}^{\infty} \beta^{t} \sum_{s_{t}} \pi_{t} [u_{c,t} c_{t} + u_{c,t} T_{t} + u_{n,t}n_t] = u_{c,0}b_{0} + u_{c,0} k_{0} [(1-\tau_{0}^{k})F_{k0} + 1 - \delta]
+\end{equation}</p>
+<p>The program writes
+\begin{align}
+&amp; \underset{\{c_t, n_t\}_{t=0}^\infty}{\text{max}} \sum^{\infty}_{t=0} \beta{t} \sum_{g^{t}} \pi_{t} (g^{t}|g_0) u\big(c_{t},1-n_{t}\big) \\
+    s.t \;\; &amp; \begin{cases}
+        c_{t} + g_{t} + k_{t+1} = A_{t} F\big(k_{t},n_{t}\big) + (1- \delta)k_{t} \\
+        \sum_{t=0}^{\infty} \beta^{t} \sum_{s_{t}} \pi_{t} [u_{c,t} c_{t} + u_{c,t} T_{t} + u_{n,t}n_t] = u_{c,0}b_{0} \\ \;\;\; + u_{c,0} k_{0} [(1-\tau_{0}^{k})F_{k0} + 1 - \delta]
+    \end{cases}
+\end{align}</p>
+<p>The Lagrangian writes:
+\begin{align}
+\mathcal{L}  = &amp; \sum_{t=0}^{\infty} \beta^{t} \sum_{g^t} \pi_t(g^t) \Big\{ u(c_{t},x_{t}) \\
+&amp;+ \Phi \left[u_{c,t} T_{t} + u_{c,t} c_{t} + u_{n,t}n_t - u_{c,0}b_{0} +[(1-\tau_{0}^{k})F_{k0} + 1 - \delta] u_{c,0} k_{0} \right] \\
+&amp;+ \theta \left(A_{t}F(k_{,t}n_{t}) + (1- \delta) k_{t} - c_{t} - g_{t} - k_{t+1}\right) \Big\}
+\end{align}</p>
+<p>From the FOC we have
+$$
+\frac{\partial \mathcal{L}}{\partial T_t}:\;\; \Phi u_{c,t} = 0
+$$</p>
+<p>By hypothesis we have $u_{c,t} &gt; 0$, thus we necessarily have $\Phi = 0$. This implies that the Ramsey plan is strictly equivalent to the social planner objective and therefore reaches the first best ! $$\tag*{$\blacksquare$}$$</p>
+
+</div>
+</div>
 </div>
     </div>
   </div>
